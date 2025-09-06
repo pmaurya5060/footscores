@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Space+Grotesk:wght@300..700&family=Vend+Sans:ital,wght@0,300..700;1,300..700&display=swap');
+@import "tailwindcss";
+
+
+/*body*/
+body {
+  font-family: 'Poppins', sans-serif;
+  background:url(assets/background_purple.jpg);
+  /* background:url(assets/1023386_6352.jpg); */
+  background-size:cover;
+  
+}
+
+
+/* Dropdown */
+.dropdown {
+  position: relative;
+  display: inline-block;
+   
+}
+
+/* Dropdown button*/
+.dropbtn {
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 8px;
+  background: none;
+}
+
+/* Dropdown content*/
+.dropdown-content {
+  display: none;
+  position: absolute;
+  min-width: 160px;
+  z-index: 1;
+}
+
+/* Dropdown links */
+.dropdown-content a {
+  color: white;
+  padding: 10px 15px;
+  text-decoration: none;
+  display: block;
+  /* background: rgba(255, 255, 255, 0); */
+
+}
+
+.dropdown-content a:hover {
+  border-radius: 5px;
+  backdrop-filter: blur(40px);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+
+/*
+
+/* Hide scrollbar but keep scrolling */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE/Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+
+/*Matches heading*/
+.matchesHeading{
+  background:none;
+}
