@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 
-
 function FootballData({selectedDate,setData}) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -29,7 +28,6 @@ function FootballData({selectedDate,setData}) {
       });
   }, [selectedDate]);
 
-  // Handle loading and error states
   if (loading) return <p>Loading data...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
