@@ -4,6 +4,7 @@ import Body from "./Body";
 import TeamDetails from "./TeamDetails"; // new page
 import TeamStats from "./TeamStats";     // new page
 import "./index.css";
+import LeagueDetails from "./LeagueDetails";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" element={<Body />} />
         <Route path="/teams/:teamName" element={<TeamDetails />} />
         <Route path="/teams/:teamName/stats" element={<TeamStats />} />
+        <Route path="/Leagues" element={<LeagueDetails/>}/>
       </Routes>
     </Router>
   );

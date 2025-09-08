@@ -10,7 +10,7 @@ const Matches = ({ data ,pageno}) => {
 
   const currentMatches = matche.slice(start, end);
 
-  console.log("pageNo in Matches:"+pageno);
+  // console.log("pageNo in Matches:"+pageno);
   // console.log(currentMatches);
 
 
@@ -30,7 +30,7 @@ const Matches = ({ data ,pageno}) => {
     const matchStatus=matches?.fixture?.status?.short;
     let statustime="";
     if(matchStatus===""){
-      let statusTime="Live";
+      let statustime="Live";
     };
 
     //individual matches function return
