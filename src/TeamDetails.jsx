@@ -8,7 +8,7 @@ const TeamDetails = () => {
   const [team, setTeam] = useState(null);
   const [leagues, setLeagues] = useState([]);
 
-  // Fetch team info
+  // Fetch team 
   useEffect(() => {
     const fetchTeam = async () => {
       const res = await fetch(
@@ -23,7 +23,7 @@ const TeamDetails = () => {
     fetchTeam();
   }, [teamName]);
 
-  // Fetch league info
+  // Fetch league 
   useEffect(() => {
     const fetchLeagues = async () => {
       const res = await fetch("https://v3.football.api-sports.io/leagues", {

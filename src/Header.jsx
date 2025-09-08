@@ -1,35 +1,52 @@
-import TeamsDropdown from "./TeamsDropdown";
-import { Link
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
- } from "react-router-dom";
-const Header=() =>{
+const Header = () => {
+  const [teamQuery, setTeamQuery] = useState("");
+  const navigate = useNavigate();
+
+  const handleSearch = (e) => {
+    if (e.key === "Enter" && teamQuery.trim()) {
+      navigate(`/teams/${teamQuery}`);
+      setTeamQuery(""); // clear input after search
+    }
+  };
+
   return (
     <header className="navbar flex justify-between items-center px-5 py-[12px] rounded-[10px] text-white font-sans my-1.5 backdrop-blur-md top-0 fixed z-50 w-[90%] left-[5%] border border-white/10">
-      <div className="logo text-[20px] font-bold cursor-pointer bg-inherit">⚽ FootScores</div>
+      <div className="logo text-[20px] font-bold cursor-pointer bg-inherit">
+        ⚽ FootScores
+      </div>
 
       <nav className="nav-links flex gap-[25px] bg-inherit">
         <div className="dropdown">
-          <Link to="/" className="deopbtn">Matches</Link>
-          <div className="dropdown-content">
-            <a href="#">Live</a>
-            <a href="#">Upcoming</a>
-            <a href="#">Results</a>
+          <Link to="/" className="dropbtn">Matches</Link>
+        </div>
+
+        <div className="dropdown">
+          <button className="dropbtn">Teams</button>
+          <div className="dropdown-content p-2">
+            <Link to="/teams/Portugal">Portugal</Link>
+            <Link to="/teams/Germany">Germany</Link>
+            <Link to="/teams/Brazil">Brazil</Link>
+
+            <input
+              type="text"
+              value={teamQuery}
+              onChange={(e) => setTeamQuery(e.target.value)}
+              onKeyDown={handleSearch}
+              placeholder="Search team..."
+              className="mt-2 p-1 w-[140px] bg-white text-black rounded"
+            />
           </div>
         </div>
 
-        <TeamsDropdown />
-
         <div className="dropdown">
-          <button className="dropbtn">Competitions</button>
-          <div className="dropdown-content">
-            <a href="#">Premier League</a>
-            <a href="#">La Liga</a>
-            <a href="#">Champions League</a>
-          </div>
+          <Link to="/leagues" className="dropbtn">Competitions</Link>
         </div>
       </nav>
     </header>
   );
-}
+};
 
 export default Header;
