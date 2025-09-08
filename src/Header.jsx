@@ -8,7 +8,10 @@ const Header = () => {
   const handleSearch = (e) => {
     if (e.key === "Enter" && teamQuery.trim()) {
       navigate(`/teams/${teamQuery}`);
-      setTeamQuery(""); // clear input after search
+      setTeamQuery(""); 
+    }
+    else{
+      alert("Enter the team name correctly niggga");
     }
   };
 
@@ -35,14 +38,21 @@ const Header = () => {
               value={teamQuery}
               onChange={(e) => setTeamQuery(e.target.value)}
               onKeyDown={handleSearch}
-              placeholder="Search team..."
-              className="mt-2 p-1 w-[140px] bg-white text-black rounded"
+              placeholder="Search Team..."
+              className="mt-2 p-1 w-[140px] bg-white backdrop-blur-md text-black rounded"
             />
           </div>
         </div>
 
         <div className="dropdown">
           <Link to="/leagues" className="dropbtn">Competitions</Link>
+          <div className="dropdown">
+            <div className="dropdown-content">
+              <a href="#">Premier League</a>
+              <a href="#">La Liga</a>
+              <a href="#">Champions League</a>
+          </div>
+        </div>
         </div>
       </nav>
     </header>
