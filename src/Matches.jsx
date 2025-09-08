@@ -30,7 +30,7 @@ const Matches = ({ data ,pageno}) => {
     const matchStatus=matches?.fixture?.status?.short;
     let statustime="";
     if(matchStatus===""){
-      let statustime="Live";
+      let statusTime="Live";
     };
 
     //individual matches function return
