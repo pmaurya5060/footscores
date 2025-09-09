@@ -5,9 +5,10 @@
 /*body*/
 body {
   font-family: 'Poppins', sans-serif;
+  
   background:url(assets/background_purple.jpg);
   /* background:url(assets/1023386_6352.jpg); */
-  background-size:cover;
+  background-size:cover; 
   
 }
 

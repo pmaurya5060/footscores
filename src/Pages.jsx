@@ -21,7 +21,7 @@ const Pages = ({data,pageno,setpageno}) => {
         return items;
     };
   return (
-    <div className="page-strip bottom-0  fixed w-full">
+    <div className="page-strip bottom-0  fixed w-full ">
         <ul className="datelist flex  mx-auto w-2xs overflow-x-scroll gap-1.5 my-1.5 scrollbar-hide">
             {pags()}
         </ul>

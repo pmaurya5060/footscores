@@ -1,10 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./Header";
 import Body from "./Body";
-import TeamDetails from "./TeamDetails"; // new page
-import TeamStats from "./TeamStats";     // new page
+import TeamDetails from "./TeamDetails"; 
+import TeamStats from "./TeamStats";
 import "./index.css";
 import LeagueDetails from "./LeagueDetails";
+import LeagueSeasons from "./LeagueSeasons";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/teams/:teamName" element={<TeamDetails />} />
         <Route path="/teams/:teamName/stats" element={<TeamStats />} />
         <Route path="/Leagues" element={<LeagueDetails/>}/>
+        <Route path="/leagues/:leagueId" element={<LeagueSeasons />} />
       </Routes>
     </Router>
   );
