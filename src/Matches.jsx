@@ -1,21 +1,23 @@
-const Matches = ({ data ,pageno}) => {
+import { useState } from "react";
+import Pages from "./Pages";
+import usePages from './Hooks/usePages';
 
+const Matches = ({ data}) => {
+
+  const datalength=data?.response?.length;
 // console.log(data)
-  const matche =  Object.values(data?.response || {});
+  // const matche =  Object.values(data?.response || {});
   // console.log("hello"+ matche);
 
-  const matchperpage=30 ;
-  const start = (pageno-1) * matchperpage;
-  const end = start + matchperpage;
 
-  const currentMatches = matche.slice(start, end);
-
+  const [pageno,setpageno]=useState(1);
+  const { currentData, totalPages } =usePages(data?.reponse,pageno,30);
   // console.log("pageNo in Matches:"+pageno);
   // console.log(currentMatches);
 
 
   //individual matches
-  const alldata = currentMatches?.map(matches => {
+  const alldata = currentData?.map(matches => {
     //DAte Sexon
     const isoDate = matches?.fixture?.date;
     const date = new Date(isoDate);
@@ -83,6 +85,7 @@ const Matches = ({ data ,pageno}) => {
         FIXTURES, SCOREBOARD AND RESULTS
       </p>
       <div className="grid grid-cols-2 px-34 py-4 gap-x-4">{alldata}</div>
+      <Pages datalength={datalength} pageno={pageno} setpageno={setpageno}/>
     </>
   );
 };

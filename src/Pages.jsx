@@ -1,7 +1,6 @@
-const Pages = ({data,pageno,setpageno}) => {
-    const totalmatches=data?.response?.length;
-    console.log(data?.response?.length);
-    // let totalpages=null;
+const Pages = ({datalength,pageno,setpageno}) => {
+    const totalmatches=datalength;
+    console.log(datalength);
     const totalpages = Math.ceil(totalmatches / 30);
     // console.log(pagno);
     

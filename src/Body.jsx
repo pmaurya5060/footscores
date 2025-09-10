@@ -2,7 +2,7 @@ import Dates from "./Dates";
 import Matches from "./Matches";
 import { useState } from "react";
 import FootballData from "./FootballData";
-import Pages from "./Pages";
+// import Pages from "./Pages";
 
 const Body = () => {
   const [data,setData]=useState(null);
@@ -19,15 +19,14 @@ const Body = () => {
   const [selectedDate, setSelectedDate] = useState(formatForApi(today));
 
 
-  const [pageno,setpageno]=useState(1);
+  
 
 
   return (
     <>
       <Dates today={today} selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
-      <Matches selectedDate={selectedDate} data={data} pageno={pageno}/>
+      <Matches selectedDate={selectedDate} data={data} />
       <FootballData selectedDate={selectedDate}  setData={setData} />
-      <Pages data={data} pageno={pageno} setpageno={setpageno}/>
     </>
   );
 };

@@ -1,13 +1,20 @@
 import useLeagues from "./Hooks/useLeagues";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import usePages from "./Hooks/usePages"
+import Pages from "./Pages";
 
 const LeagueDetails = () => {
   const LeagueData = useLeagues();
   // console.log("League details log ",LeagueData);
   // console.log(LeagueData[0]?.league?.name);
   // console.log(LeagueData[0].seasons);
-  
-  const alldata = LeagueData.map((l) => (
+
+  const [pageno,setpageno]=useState(1);
+
+  const { currentData, totalPages }=usePages(LeagueData,pageno,30); //desatrucaturaing
+
+  const alldata = currentData.map((l) => (
     
     <Link
       key={l?.league?.id}
@@ -20,9 +27,12 @@ const LeagueDetails = () => {
   ));
 
   return (
+    <>
     <div className="lcontainer flex flex-wrap gap-6 justify-center p-6 my-25 bg-[url('src/assets/ChatGPT Image Sep 9, 2025, 09_18_33 PM.png')] transition-colors duration-500">
       {alldata}
     </div>
+    <Pages datalength={LeagueData.length} pageno={pageno} setpageno={setpageno} />
+    </>
   );
 };
 
