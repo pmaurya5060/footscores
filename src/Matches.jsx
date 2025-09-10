@@ -37,39 +37,41 @@ const Matches = ({ data}) => {
     //individual matches function return
     return (
       <div 
-      className="bg-[#535C91]/20 backdrop-blur-sm p-4 mt-2 rounded-lg w-full h-30 mx-auto text-center flex items-center justify-between text-white hover:scale-105 transition-transform duration-500 " 
+      className="bg-[#535C91]/20 backdrop-blur-sm p-4 mt-2 rounded-lg w-full h-36 mx-auto text-center flex items-center justify-between text-white hover:scale-105 transition-transform duration-500 border " 
       key={matches?.fixture?.id}
       >
 
-        <img src={matches?.teams?.home?.logo} alt="home" className="w-12 h-12" />
+        <img src={matches?.teams?.home?.logo} alt="home" className="w-16 h-12" />
 
         {/* Main item  */}
         <div className="flex flex-col items-center flex-1 px-2">
-          <h1 className="text-sm text-gray-300 mb-1">{matches?.league?.name}</h1>
+          <h1 className="text-sm text-gray-300 mb-1 my-1.5">{matches?.league?.name}</h1>
 
-          <div className="flex items-center justify-center gap-4">
-            <span className="text-right">
-              <span className="block text-sm">{matches?.teams?.home?.name}</span>
-              <span className="text-3xl font-bold">{matches?.goals?.home}</span>
-            </span>
+          {/* Scores area */}
+          <div className="flex flex-col items-center justify-center">
 
-            <span className="text-xl font-bold ">-</span>
-
-            <span className="text-left">
-              <span className="block text-sm">{matches?.teams?.away?.name}</span>
-              <span className="text-3xl font-bold">{matches?.goals?.away}</span>
-            </span>
+            <div className="teamname flex w-full gap-2.5 text-blue-500 font-bold">
+              <div className="flex-1 text-sm text-center truncate">{matches?.teams?.home?.name}</div>
+              <div className="flex-1 text-sm text-center truncate">{matches?.teams?.away?.name}</div>
+            </div>
+              
+            <div className="scores flex gap-2.5 ">
+              <div className="text-4xl font-bold">{matches?.goals?.home}</div>
+              <div className="text-xl font-bold">_</div>
+              <div className="text-4xl font-bold">{matches?.goals?.away}</div>
+            </div>
+              
           </div>
 
-          <div className="mt-2 text-xs text-gray-300">
-            <h2 className="text-[#ffcc00] font-semibold">
-             {matches?.fixture?.status?.long} {statustime}
-            </h2>
-           <h3>{formattedTime}</h3>
+            <div className="mt-2 text-xs text-gray-300">
+              <h2 className="text-[#ffcc00] font-semibold">
+              {matches?.fixture?.status?.long} {statustime}
+              </h2>
+            <h3>{formattedTime}</h3>
           </div>
         </div>
 
-        <img src={matches?.teams?.away?.logo} alt="away" className="w-12 h-12" />
+        <img src={matches?.teams?.away?.logo} alt="away" className="w-16 h-12" />
 
       </div>
       
