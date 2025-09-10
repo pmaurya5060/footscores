@@ -8,12 +8,14 @@ const LeagueDetails = () => {
   // console.log(LeagueData[0].seasons);
   
   const alldata = LeagueData.map((l) => (
+    
     <Link
       key={l?.league?.id}
       to={`/leagues/${l?.league?.id}`}
-      className="indvid_league bg-[#535C91]/20 backdrop-blur-sm p-4 rounded-2xl w-64 h-40 text-white flex flex-col items-center justify-center shadow-md hover:scale-105 transition-transform duration-500 cursor-pointer"
+      className="indvid_league backdrop-blur-sm p-4 rounded-2xl w-64 h-50 text-white flex items-center justify-center gap-2.5 shadow-md hover:scale-105 transition-transform duration-500 cursor-pointer border-white"
     >
-      <div className="name">{l?.league?.name}</div>
+      <div className="name text-yellow-200">{l?.league?.name}</div>
+      <div className="logo w-24 h-32"><img src={l?.league?.logo} alt="logo" /></div>
     </Link>
   ));
 
