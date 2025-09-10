@@ -7,8 +7,8 @@ import FootballData from "./FootballData";
 const Body = () => {
   const [data,setData]=useState(null);
   // console.log("body "+data)
-  const today = new Date();
 
+  const today = new Date();
   const formatForApi = (date) => {
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, "0");
@@ -17,11 +17,7 @@ const Body = () => {
   };
   
   const [selectedDate, setSelectedDate] = useState(formatForApi(today));
-
-
   
-
-
   return (
     <>
       <Dates today={today} selectedDate={selectedDate} setSelectedDate={setSelectedDate} />

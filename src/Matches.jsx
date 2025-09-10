@@ -11,10 +11,9 @@ const Matches = ({ data}) => {
 
 
   const [pageno,setpageno]=useState(1);
-  const { currentData, totalPages } =usePages(data?.reponse,pageno,30);
+  const { currentData, totalPages } =usePages(data?.response || [],pageno,30);
   // console.log("pageNo in Matches:"+pageno);
   // console.log(currentMatches);
-
 
   //individual matches
   const alldata = currentData?.map(matches => {
@@ -85,7 +84,7 @@ const Matches = ({ data}) => {
         FIXTURES, SCOREBOARD AND RESULTS
       </p>
       <div className="grid grid-cols-2 px-34 py-4 gap-x-4">{alldata}</div>
-      <Pages datalength={datalength} pageno={pageno} setpageno={setpageno}/>
+      <Pages pageno={pageno} setpageno={setpageno} datalength={datalength}/>
     </>
   );
 };

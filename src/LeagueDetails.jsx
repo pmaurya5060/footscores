@@ -31,7 +31,7 @@ const LeagueDetails = () => {
     <div className="lcontainer flex flex-wrap gap-6 justify-center p-6 my-25 bg-[url('src/assets/ChatGPT Image Sep 9, 2025, 09_18_33 PM.png')] transition-colors duration-500">
       {alldata}
     </div>
-    <Pages datalength={LeagueData.length} pageno={pageno} setpageno={setpageno} />
+    <Pages pageno={pageno} setpageno={setpageno} datalength={LeagueData.length} />
     </>
   );
 };
