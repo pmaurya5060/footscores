@@ -37,11 +37,11 @@ const Matches = ({ data}) => {
     //individual matches function return
     return (
       <div 
-      className="bg-[#535C91]/20 backdrop-blur-sm p-4 mt-2 rounded-lg w-full h-36 mx-auto text-center flex items-center justify-between text-white hover:scale-105 transition-transform duration-500 border " 
+      className="bg-[#535C91]/20 backdrop-blur-sm p-4 mt-2 rounded-lg w-full md:w-1/2 lg:w-[580px] h-36 mx-auto text-center flex items-center text-white hover:scale-105 transition-transform duration-500 border " 
       key={matches?.fixture?.id}
       >
 
-        <img src={matches?.teams?.home?.logo} alt="home" className="w-16 h-12" />
+        <img src={matches?.teams?.home?.logo} alt="home" className="w-20 h-18" />
 
         {/* Main item  */}
         <div className="flex flex-col items-center flex-1 px-2">
@@ -71,7 +71,7 @@ const Matches = ({ data}) => {
           </div>
         </div>
 
-        <img src={matches?.teams?.away?.logo} alt="away" className="w-16 h-12" />
+        <img src={matches?.teams?.away?.logo} alt="away" className="w-20 h-18  " />
 
       </div>
       
@@ -82,10 +82,10 @@ const Matches = ({ data}) => {
   //Matches return
   return (
     <>
-      <p className="matchesHeading bg-none text-white text-2xl m-2.5 px-32">
+      <p className="matchesHeading text-white text-xl sm:text-2xl md:text-3xl m-2.5 px-4 sm:px-8 md:px-16 text-center">
         FIXTURES, SCOREBOARD AND RESULTS
       </p>
-      <div className="grid grid-cols-2 px-34 py-4 gap-x-4">{alldata}</div>
+      <div className="flex flex-wrap px-4 md:px-8 lg:px-16 py-4 gap-4">{alldata}</div>
       <Pages pageno={pageno} setpageno={setpageno} datalength={datalength}/>
     </>
   );

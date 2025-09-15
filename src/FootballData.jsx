@@ -21,6 +21,8 @@ function FootballData({selectedDate,setData}) {
       .then((result) => {
         setData(result); 
         setLoading(false);
+        // console.log("fetch footballdata");
+        
       })
       .catch((error) => {
         setError(error);
