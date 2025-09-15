@@ -41,10 +41,10 @@ const Matches = ({ data}) => {
       key={matches?.fixture?.id}
       >
 
-        <img src={matches?.teams?.home?.logo} alt="home" className="w-20 h-18" />
+        <img src={matches?.teams?.home?.logo} alt="home" className="w-10 sm:w-12 md:w-16 h-10 sm:h-12 md:h-16 object-contain flex-shrink-0" />
 
         {/* Main item  */}
-        <div className="flex flex-col items-center flex-1 px-2">
+        <div className="flex flex-col items-center flex-1 min-w-0 px-2">
           <h1 className="text-sm text-gray-300 mb-1 my-1.5">{matches?.league?.name}</h1>
 
           {/* Scores area */}
@@ -56,9 +56,10 @@ const Matches = ({ data}) => {
             </div>
               
             <div className="scores flex gap-2.5 ">
-              <div className="text-4xl font-bold">{matches?.goals?.home}</div>
-              <div className="text-xl font-bold">_</div>
-              <div className="text-4xl font-bold">{matches?.goals?.away}</div>
+              <div className="text-xl sm:text-2xl md:text-3xl font-bold">{matches?.goals?.home}</div>
+              <span className="text-base sm:text-lg md:text-xl font-bold">-</span>
+              <div className="text-xl sm:text-2xl md:text-3xl font-bold">{matches?.goals?.away}</div>
+
             </div>
               
           </div>
@@ -71,7 +72,7 @@ const Matches = ({ data}) => {
           </div>
         </div>
 
-        <img src={matches?.teams?.away?.logo} alt="away" className="w-20 h-18  " />
+        <img src={matches?.teams?.away?.logo} alt="away" className="w-10 sm:w-12 md:w-16 h-10 sm:h-12 md:h-16 object-contain flex-shrink-0 " />
 
       </div>
       
