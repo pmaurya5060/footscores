@@ -3,17 +3,15 @@
 import { useState, useEffect } from "react";
 import DatesStrip from "../components/DatesStrip";
 import MatchCard from "../components/MatchCard";
-import Pages from "../components/Pages";
 import Loader from "../components/Loader";
 import { getFixtures } from "../lib/api";
-import usePages from "../hooks/usePages";
+import { groupAndSortFixtures } from "../utils/helpers";
 
 export default function Home() {
   const [selectedDate, setSelectedDate] = useState("");
-  const [data, setData] = useState(null);
+  const [matchesList, setMatchesList] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [pageno, setpageno] = useState(1);
 
   // Initialize selectedDate on mount to avoid hydration mismatch
   useEffect(() => {
@@ -33,8 +31,7 @@ export default function Home() {
       setError(null);
       try {
         const result = await getFixtures(selectedDate);
-        setData(result);
-        setpageno(1); // Reset page number on date change
+        setMatchesList(result?.response || []);
       } catch (err) {
         setError(err);
       } finally {
@@ -45,38 +42,66 @@ export default function Home() {
     fetchMatches();
   }, [selectedDate]);
 
-  // Paginate matches list
-  const matchesList = data?.response || [];
-  const { currentData: paginatedMatches } = usePages(matchesList, pageno, 30);
+  // Group and sort all fixtures by league, with priority ordering
+  const groupedLeagues = groupAndSortFixtures(matchesList);
 
   return (
     <div className="min-h-screen pb-24 text-white">
-      {/* Dates Strip */}
+
+      {/* Date Selector Strip */}
       <DatesStrip selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
 
-      {/* Heading */}
-      <p className="matchesHeading text-white text-xl sm:text-2xl md:text-3xl m-2.5 px-4 sm:px-8 md:px-16 text-center font-bold">
+      {/* Page Heading */}
+      <p className="matchesHeading text-white text-xl sm:text-2xl md:text-3xl m-2.5 px-4 sm:px-8 md:px-16 text-center font-bold tracking-wide">
         FIXTURES, SCOREBOARD AND RESULTS
       </p>
 
-      {/* Matches Content */}
+      {/* Main Content */}
       {loading ? (
         <Loader message="Loading matches..." />
       ) : error ? (
-        <p className="text-center text-red-400 mt-8">Error loading data: {error.message}</p>
-      ) : paginatedMatches.length === 0 ? (
-        <p className="text-center text-gray-400 mt-8">No matches scheduled for this date.</p>
+        <p className="text-center text-red-400 mt-8 text-lg">
+          Error loading data: {error.message}
+        </p>
+      ) : groupedLeagues.length === 0 ? (
+        <p className="text-center text-gray-400 mt-8 text-lg">
+          No matches scheduled for this date.
+        </p>
       ) : (
-        <div className="flex flex-wrap px-4 md:px-8 lg:px-16 py-4 gap-4 justify-center">
-          {paginatedMatches.map((match) => (
-            <MatchCard key={match.fixture.id} match={match} />
+        <div className="px-4 md:px-8 lg:px-16 py-4 space-y-6 max-w-5xl mx-auto">
+          {groupedLeagues.map((group) => (
+            <div
+              key={group.leagueName}
+              className="bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 overflow-hidden"
+            >
+
+              {/* ── League Header ── */}
+              <div className="flex items-center gap-3 px-5 py-3 bg-white/5 border-b border-white/10">
+                {group.leagueLogo && (
+                  <img
+                    src={group.leagueLogo}
+                    alt={group.leagueName}
+                    className="w-7 h-7 object-contain flex-shrink-0"
+                  />
+                )}
+                <h2 className="text-base font-bold text-yellow-300 tracking-wide">
+                  {group.leagueName}
+                </h2>
+                <span className="ml-auto text-xs text-gray-400 font-medium">
+                  {group.matches.length} match{group.matches.length !== 1 ? "es" : ""}
+                </span>
+              </div>
+
+              {/* ── Sorted Matches List ── */}
+              <div className="flex flex-col gap-0 divide-y divide-white/5">
+                {group.matches.map((match) => (
+                  <MatchCard key={match.fixture.id} match={match} />
+                ))}
+              </div>
+
+            </div>
           ))}
         </div>
-      )}
-
-      {/* Pagination Controls */}
-      {!loading && !error && matchesList.length > 0 && (
-        <Pages datalength={matchesList.length} pageno={pageno} setpageno={setpageno} />
       )}
     </div>
   );
