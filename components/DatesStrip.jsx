@@ -25,7 +25,8 @@ function DatesStrip({ selectedDate, setSelectedDate }) {
   const getDates = () => {
     const dates = [];
     const today = new Date();
-    for (let i = -1; i <= 1; i++) {
+    // i ranges from -2 (Day Before Yesterday) to 0 (Today)
+    for (let i = -2; i <= 0; i++) {
       const d = new Date();
       d.setDate(today.getDate() + i);
       dates.push(d);
