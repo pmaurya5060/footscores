@@ -18,7 +18,7 @@ function MatchCard({ match }) {
   }, [match]);
 
   return (
-    <div className="bg-[#535C91]/20 backdrop-blur-sm p-4 mt-2 rounded-lg w-full md:w-1/2 lg:w-[580px] h-36 mx-auto text-center flex items-center text-white hover:scale-105 transition-transform duration-500 border border-white/10">
+    <div className="bg-[#535C91]/20 backdrop-blur-sm p-4 rounded-lg w-full min-h-[120px] text-center flex items-center text-white hover:scale-105 transition-transform duration-500 border border-white/10">
       <img
         src={match?.teams?.home?.logo}
         alt={match?.teams?.home?.name}

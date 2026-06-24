@@ -1,4 +1,5 @@
 export const LEAGUE_PRIORITY = [
+  "World Cup",
   "Premier League",
   "La Liga",
   "Bundesliga",

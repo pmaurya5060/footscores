@@ -68,32 +68,34 @@ export default function Home() {
           No matches scheduled for this date.
         </p>
       ) : (
-        <div className="px-4 md:px-8 lg:px-16 py-4 space-y-6 max-w-5xl mx-auto">
+        <div className="px-4 md:px-8 lg:px-12 py-4 space-y-8 max-w-[1600px] mx-auto">
           {groupedLeagues.map((group) => (
             <div
               key={group.leagueName}
-              className="bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 overflow-hidden"
+              className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 overflow-hidden"
             >
 
               {/* ── League Header ── */}
-              <div className="flex items-center gap-3 px-5 py-3 bg-white/5 border-b border-white/10">
+              <div className="flex items-center gap-4 px-6 py-4 bg-white/5 border-b border-white/10">
                 {group.leagueLogo && (
                   <img
                     src={group.leagueLogo}
                     alt={group.leagueName}
-                    className="w-7 h-7 object-contain flex-shrink-0"
+                    className="w-12 h-12 object-contain flex-shrink-0 drop-shadow-lg"
                   />
                 )}
-                <h2 className="text-base font-bold text-yellow-300 tracking-wide">
-                  {group.leagueName}
-                </h2>
-                <span className="ml-auto text-xs text-gray-400 font-medium">
-                  {group.matches.length} match{group.matches.length !== 1 ? "es" : ""}
-                </span>
+                <div>
+                  <h2 className="text-2xl font-bold text-yellow-300 tracking-wide leading-tight">
+                    {group.leagueName}
+                  </h2>
+                  <span className="text-sm text-gray-400">
+                    {group.matches.length} match{group.matches.length !== 1 ? "es" : ""}
+                  </span>
+                </div>
               </div>
 
-              {/* ── Sorted Matches List ── */}
-              <div className="flex flex-col gap-0 divide-y divide-white/5">
+              {/* ── Matches: 2 per row ── */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 p-4">
                 {group.matches.map((match) => (
                   <MatchCard key={match.fixture.id} match={match} />
                 ))}
