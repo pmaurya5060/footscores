@@ -3,11 +3,32 @@ import React from "react";
 import Link from "next/link";
 import { getMatchStatus } from "../../utils/matchStatus";
 
-export default function MatchHeader({ details }) {
+export default function MatchHeader({ details, events }) {
   if (!details) return null;
 
   const { fixture, league, teams, goals } = details;
   const { label: statusLabel, isLive } = getMatchStatus(fixture?.status);
+
+  // Extract goal scorers
+  const homeGoals = [];
+  const awayGoals = [];
+
+  const eventsList = events || details?.events || [];
+
+  if (eventsList.length > 0) {
+    eventsList.forEach((event) => {
+      // API-Football uses type="Goal". We ignore missed penalties.
+      if (event.type === "Goal" && event.detail !== "Missed Penalty") {
+        const time = event.time.elapsed + (event.time.extra ? `+${event.time.extra}` : "");
+        const scorer = `${event.player.name} ${time}'`;
+        if (event.team.id === teams?.home?.id) {
+          homeGoals.push(scorer);
+        } else if (event.team.id === teams?.away?.id) {
+          awayGoals.push(scorer);
+        }
+      }
+    });
+  }
 
   return (
     <div className="bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 p-6 flex flex-col items-center">
@@ -58,6 +79,23 @@ export default function MatchHeader({ details }) {
         </div>
 
       </div>
+
+      {/* Goal Scorers */}
+      {(homeGoals.length > 0 || awayGoals.length > 0) && (
+        <div className="flex w-full max-w-3xl justify-between mt-8 text-sm md:text-base text-gray-300">
+          <div className="flex flex-col items-start w-1/2 pr-4">
+            {homeGoals.map((g, i) => (
+              <span key={i} className="mb-1">⚽ {g}</span>
+            ))}
+          </div>
+          <div className="flex flex-col items-end w-1/2 pl-4 text-right">
+            {awayGoals.map((g, i) => (
+              <span key={i} className="mb-1">{g} ⚽</span>
+            ))}
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }

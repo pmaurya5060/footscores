@@ -4,10 +4,7 @@
 /* body */
 body {
   font-family: 'Poppins', sans-serif;
-  background: url(/assets/background_purple.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
+  background: black;
   min-height: 100vh;
 }
 

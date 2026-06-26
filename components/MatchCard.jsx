@@ -21,6 +21,25 @@ function MatchCard({ match }) {
 
   const { label: statusLabel, isLive } = getMatchStatus(match?.fixture?.status);
 
+  // Extract goal scorers
+  const homeGoals = [];
+  const awayGoals = [];
+
+  if (match?.events) {
+    match.events.forEach((event) => {
+      // API-Football uses type="Goal". We ignore missed penalties.
+      if (event.type === "Goal" && event.detail !== "Missed Penalty") {
+        const time = event.time.elapsed + (event.time.extra ? `+${event.time.extra}` : "");
+        const scorer = `${event.player.name} ${time}'`;
+        if (event.team.id === match?.teams?.home?.id) {
+          homeGoals.push(scorer);
+        } else if (event.team.id === match?.teams?.away?.id) {
+          awayGoals.push(scorer);
+        }
+      }
+    });
+  }
+
   return (
     <Link href={`/match/${match?.fixture?.id}`} className="block w-full">
       <div className="bg-[#535C91]/20 backdrop-blur-sm p-4 rounded-lg w-full min-h-[120px] text-center flex items-center text-white hover:scale-105 transition-transform duration-500 border border-white/10 cursor-pointer">
@@ -56,6 +75,22 @@ function MatchCard({ match }) {
                 {match?.goals?.away ?? 0}
               </div>
             </div>
+
+            {/* Goal Scorers */}
+            {(homeGoals.length > 0 || awayGoals.length > 0) && (
+              <div className="flex w-full justify-between mt-2 text-[10px] sm:text-xs text-gray-400">
+                <div className="flex flex-col items-center sm:items-start w-1/2 pr-1 text-center sm:text-left">
+                  {homeGoals.map((g, i) => (
+                    <span key={i} className="truncate w-full">⚽ {g}</span>
+                  ))}
+                </div>
+                <div className="flex flex-col items-center sm:items-end w-1/2 pl-1 text-center sm:text-right">
+                  {awayGoals.map((g, i) => (
+                    <span key={i} className="truncate w-full">{g} ⚽</span>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
           <div className="mt-2 text-xs flex flex-col items-center gap-1">
