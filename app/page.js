@@ -9,6 +9,7 @@ import { groupAndSortFixtures } from "../utils/helpers";
 
 export default function Home() {
   const [selectedDate, setSelectedDate] = useState("");
+  const [matchFilter, setMatchFilter] = useState("all");
   const [matchesList, setMatchesList] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
