@@ -91,7 +91,7 @@ export default function MatchDetailsPage() {
   const tabs = ["Info", "Summary", "Stats", "Line-ups", "Table", "H2H"];
 
   return (
-    <div className="min-h-screen pb-24 text-white max-w-5xl mx-auto px-4 md:px-8 pt-8 space-y-6">
+    <div className="min-h-screen pb-24 text-white max-w-5xl mx-auto px-4 md:px-8 pt-28 space-y-6">
 
       {/* 1. Header (Scores, Live Status, Teams) */}
       <MatchHeader details={details} events={events} />
