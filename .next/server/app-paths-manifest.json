@@ -1,4 +1,3 @@
 {
-  "/page": "app/page.js",
   "/match/[fixtureId]/page": "app/match/[fixtureId]/page.js"
 }
