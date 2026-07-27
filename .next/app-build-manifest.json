@@ -11,6 +11,11 @@
       "static/chunks/main-app.js",
       "static/chunks/app/match/[fixtureId]/page.js"
     ],
+    "/api/football/[...path]/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/football/[...path]/route.js"
+    ],
     "/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",

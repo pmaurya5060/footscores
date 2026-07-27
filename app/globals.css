@@ -5,10 +5,10 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* body */
 body {
   font-family: 'Poppins', sans-serif;
-  background: black;
+  background: url('/bg-app.png') no-repeat center center fixed;
+  background-size: cover;
   min-height: 100vh;
 }
 
