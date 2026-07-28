@@ -20,12 +20,12 @@ const Navbar = () => {
       <nav
         className={`${
           isopen
-            ? "nav-links flex flex-col md:flex-row gap-[15px] md:gap-[25px] bg-black/90 md:bg-transparent absolute md:relative top-16 md:top-0 left-0 md:left-auto w-full md:w-auto p-4 md:p-0 rounded-lg md:rounded-none border border-white/10 md:border-none z-50"
-            : "hidden md:flex md:flex-row md:gap-[25px] bg-inherit"
+            ? "nav-links flex flex-col md:flex-row items-center gap-[15px] md:gap-[25px] bg-black/90 md:bg-transparent absolute md:relative top-16 md:top-0 left-0 md:left-auto w-full md:w-auto p-4 md:p-0 rounded-lg md:rounded-none border border-white/10 md:border-none z-50"
+            : "hidden md:flex md:flex-row items-center md:gap-[25px] bg-inherit"
         }`}
       >
         <div className="dropdown">
-          <Link href="/" className="dropbtn hover:text-[#ffcc00] transition-colors">
+          <Link href="/" className="dropbtn font-semibold hover:text-[#ffcc00] transition-colors">
             Matches
           </Link>
         </div>
@@ -33,7 +33,7 @@ const Navbar = () => {
         <TeamsDropdown />
 
         <div className="dropdown">
-          <Link href="/leagues" className="dropbtn hover:text-[#ffcc00] transition-colors">
+          <Link href="/leagues" className="dropbtn font-semibold hover:text-[#ffcc00] transition-colors">
             Competitions
           </Link>
           <div className="dropdown-content bg-[#1E2A47]/95 border border-white/10 rounded-lg p-2 mt-1">

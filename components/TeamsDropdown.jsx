@@ -17,7 +17,7 @@ const TeamsDropdown = () => {
 
   return (
     <div className="dropdown">
-      <button className="dropbtn text-white font-semibold">Teams</button>
+      <button className="dropbtn font-semibold hover:text-[#ffcc00] transition-colors">Teams</button>
       <div className="dropdown-content p-2 bg-[#1E2A47]/90 backdrop-blur-lg border border-white/10 rounded-lg shadow-xl mt-1">
         <Link href="/teams/Portugal" className="hover:bg-white/10 block px-3 py-2 rounded text-white text-sm">
           Portugal
